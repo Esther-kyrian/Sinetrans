@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINETRANS SA · À propos</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2ed;
+            color: #1e3a2f;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        :root {
+            --vert-fonce: #0f3b2a;
+            --rouge: #b22222;
+            --gold: #c9a84c;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            background: rgba(15, 59, 42, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 0.6rem 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(178, 34, 34, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo img {
+            height: 44px;
+            width: auto;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+        .logo h1 {
+            color: #f5f0e0;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: 0.5px;
+        }
+        .logo h1 i {
+            color: var(--rouge);
+            margin-right: 4px;
+        }
+        .logo span {
+            font-size: 0.7rem;
+            color: #c6d6c0;
+            display: block;
+            font-style: italic;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 5px;
+            background: transparent;
+            border: none;
+        }
+        .burger-menu span {
+            width: 28px;
+            height: 3px;
+            background: #f5f0e0;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #e8efe4;
+            font-family: 'Times New Roman', Times, serif;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.3rem 0.2rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.25s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--rouge);
+            transition: 0.3s ease;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #f7d98a;
+        }
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+        /* ----- BANNIÈRE ----- */
+        .page-banner {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .page-banner .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 59, 42, 0.65) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+        .page-banner .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            color: #f5f0e0;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+        .page-banner .banner-content h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: fadeInUpBanner 1s ease forwards;
+            opacity: 0;
+        }
+        .page-banner .banner-content p {
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fadeInUpBanner 1s ease 0.3s forwards;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeInUpBanner {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ----- SECTION TEXTE ----- */
+        .about-text-section {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+        .about-text-left {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 2.5rem;
+            border: 1px solid rgba(15, 59, 42, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+        .about-text-left h2 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--vert-fonce);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .about-text-left h2 i {
+            color: var(--rouge);
+            margin-right: 10px;
+        }
+        .about-text-left p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #1f3f2d;
+            margin-bottom: 1rem;
+        }
+        .about-text-left .highlight {
+            color: var(--rouge);
+            font-weight: 700;
+        }
+
+        .about-text-right {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 2.5rem;
+            border: 1px solid rgba(15, 59, 42, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+        .about-text-right h3 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--vert-fonce);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-text-right h3 i {
+            color: var(--rouge);
+            margin-right: 10px;
+        }
+        .about-text-right ul {
+            list-style: none;
+            padding: 0;
+        }
+        .about-text-right ul li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(15, 59, 42, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: #1f3f2d;
+        }
+        .about-text-right ul li:last-child {
+            border-bottom: none;
+        }
+        .about-text-right ul li i {
+            color: var(--rouge);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ----- MINI-CAROUSEL ----- */
+        .mini-carousel-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .mini-carousel-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 2rem 2rem 1.5rem;
+            border: 1px solid rgba(15, 59, 42, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+        .mini-carousel-container h2 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--vert-fonce);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .mini-carousel-container h2 i {
+            color: var(--rouge);
+            margin-right: 10px;
+        }
+
+        .mini-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .mini-carousel-slide {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+        .mini-carousel-item {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(15, 59, 42, 0.04);
+            border-radius: 16px;
+            flex-wrap: wrap;
+        }
+        .mini-carousel-item img {
+            width: 200px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 3px solid var(--rouge);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .mini-carousel-item .mini-content {
+            max-width: 500px;
+        }
+        .mini-carousel-item .mini-content h3 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--vert-fonce);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .mini-carousel-item .mini-content p {
+            font-size: 1rem;
+            color: #2f4d3a;
+            line-height: 1.6;
+        }
+
+        .mini-carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        .mini-carousel-btn {
+            background: var(--vert-fonce);
+            border: 2px solid var(--rouge);
+            color: #f5f0e0;
+            font-size: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .mini-carousel-btn:hover {
+            background: var(--rouge);
+            transform: scale(1.05);
+        }
+        .mini-dots {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .mini-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(15, 59, 42, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+        .mini-dot.active {
+            background: var(--rouge);
+            border-color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        /* ----- CHATBOT ----- */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid var(--rouge);
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: 0.3s ease;
+            z-index: 999;
+            overflow: hidden;
+            padding: 0;
+            background: var(--vert-fonce);
+        }
+        .chatbot-toggle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .chatbot-toggle:hover {
+            transform: scale(1.08);
+            border-color: var(--gold);
+            box-shadow: 0 12px 40px rgba(178, 34, 34, 0.35);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 350px;
+            max-width: 92vw;
+            background: rgba(246, 250, 245, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 30, 10, 0.25);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            border: 1px solid rgba(178, 34, 34, 0.2);
+            animation: slideUp 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .chatbot-window.open { display: flex; }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chat-header {
+            background: rgba(15, 59, 42, 0.9);
+            backdrop-filter: blur(8px);
+            color: #f5f0e0;
+            padding: 0.8rem 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid rgba(178, 34, 34, 0.3);
+            font-size: 1rem;
+        }
+        .chat-header img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--rouge);
+        }
+        .chat-header span { flex: 1; }
+        .chat-header .close-chat {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chat-header .close-chat:hover { color: var(--rouge); }
+
+        .chat-messages {
+            padding: 0.8rem 1rem;
+            height: 180px;
+            overflow-y: auto;
+            background: rgba(240, 245, 236, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .chat-msg {
+            padding: 8px 16px;
+            border-radius: 24px;
+            max-width: 85%;
+            font-size: 0.9rem;
+            line-height: 1.3;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .chat-msg.bot {
+            background: rgba(220, 230, 214, 0.8);
+            backdrop-filter: blur(4px);
+            color: #0f3b2a;
+            align-self: flex-start;
+            border-bottom-left-radius: 6px;
+            border-left: 4px solid var(--rouge);
+        }
+        .chat-msg.user {
+            background: var(--vert-fonce);
+            color: #f5f0e0;
+            align-self: flex-end;
+            border-bottom-right-radius: 6px;
+        }
+        .chat-msg.file-msg {
+            background: rgba(201, 168, 76, 0.2);
+            border: 1px dashed var(--gold);
+            color: #0f3b2a;
+            align-self: flex-start;
+            border-radius: 12px;
+            font-style: italic;
+            max-width: 90%;
+        }
+
+        .thinking-indicator {
+            display: none;
+            align-self: flex-start;
+            background: rgba(220, 230, 214, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 10px 18px;
+            border-radius: 24px;
+            border-bottom-left-radius: 6px;
+            border-left: 4px solid var(--rouge);
+            color: #0f3b2a;
+            font-size: 0.9rem;
+            gap: 4px;
+            align-items: center;
+        }
+        .thinking-indicator.active { display: flex; }
+        .thinking-indicator .dot-thinking {
+            width: 8px;
+            height: 8px;
+            background: var(--vert-fonce);
+            border-radius: 50%;
+            display: inline-block;
+            animation: thinkingBounce 1.4s infinite ease-in-out both;
+        }
+        .thinking-indicator .dot-thinking:nth-child(1) { animation-delay: -0.32s; }
+        .thinking-indicator .dot-thinking:nth-child(2) { animation-delay: -0.16s; }
+        .thinking-indicator .dot-thinking:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes thinkingBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .chat-input-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            border-top: 1px solid rgba(207, 221, 208, 0.5);
+            padding: 0.4rem 0.4rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+        }
+        .chat-input-area .input-wrapper {
+            display: flex;
+            flex: 1;
+            gap: 4px;
+            min-width: 150px;
+        }
+        .chat-input-area input[type="text"] {
+            flex: 1;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            background: rgba(231, 239, 226, 0.7);
+            backdrop-filter: blur(4px);
+            outline: none;
+            font-size: 0.9rem;
+            font-family: 'Times New Roman', Times, serif;
+            min-width: 80px;
+        }
+        .chat-input-area input[type="text"]:focus {
+            background: rgba(231, 239, 226, 0.9);
+        }
+        .chat-input-area .file-btn {
+            background: rgba(15, 59, 42, 0.7);
+            border: none;
+            color: #f5f0e0;
+            width: 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.25s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-input-area .file-btn:hover { background: var(--gold); }
+        .chat-input-area .send-btn {
+            background: var(--vert-fonce);
+            border: none;
+            color: #f5f0e0;
+            width: 44px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.25s;
+            font-size: 1.1rem;
+        }
+        .chat-input-area .send-btn:hover {
+            background: var(--rouge);
+            transform: scale(1.04);
+        }
+        #fileInput { display: none; }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: rgba(15, 59, 42, 0.95);
+            backdrop-filter: blur(8px);
+            color: #b8c9b0;
+            padding: 2rem 1.5rem 1.5rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 3px solid rgba(178, 34, 34, 0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .footer-info { text-align: left; }
+        .footer-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        .footer-info a {
+            color: #f7d98a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer-info a:hover { color: var(--rouge); }
+
+        .newsletter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .newsletter label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e8efe4;
+        }
+        .newsletter input {
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f0e0;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.9rem;
+            outline: none;
+            width: 220px;
+            transition: 0.3s;
+        }
+        .newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .newsletter input:focus {
+            border-color: var(--rouge);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .newsletter button {
+            background: var(--rouge);
+            border: none;
+            color: #f5f0e0;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .newsletter button:hover {
+            background: #8b1a1a;
+            transform: scale(1.02);
+        }
+
+        .footer-bottom {
+            padding-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #8aa899;
+        }
+        .footer-bottom a {
+            color: #f7d98a;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+        .footer-bottom a:hover { color: var(--rouge); }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 800px) {
+            .burger-menu { display: flex; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(15, 59, 42, 0.95);
+                backdrop-filter: blur(14px);
+                padding: 1rem 0;
+                border-radius: 16px;
+                margin-top: 0.5rem;
+                gap: 0.8rem;
+                align-items: center;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 1.1rem; padding: 0.4rem 0; }
+
+            .page-banner { height: 220px; }
+            .page-banner .banner-content h1 { font-size: 2.2rem; }
+            .page-banner .banner-content p { font-size: 1rem; }
+
+            .about-text-section { grid-template-columns: 1fr; gap: 1.5rem; }
+            .about-text-left, .about-text-right { padding: 1.5rem; }
+
+            .mini-carousel-item { flex-direction: column; text-align: center; padding: 1rem; }
+            .mini-carousel-item img { width: 100%; max-width: 280px; height: 180px; }
+
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-info { text-align: center; }
+            .newsletter { justify-content: center; }
+            .chatbot-window { width: 320px; right: 10px; bottom: 90px; }
+        }
+
+        @media (max-width: 500px) {
+            .navbar { padding: 0.5rem 1rem; }
+            .logo h1 { font-size: 1.2rem; }
+            .logo img { height: 34px; }
+            .page-banner { height: 180px; }
+            .page-banner .banner-content h1 { font-size: 1.6rem; }
+            .page-banner .banner-content p { font-size: 0.85rem; }
+            .about-text-left, .about-text-right { padding: 1rem; }
+            .mini-carousel-container { padding: 1rem; }
+            .mini-carousel-item img { max-width: 200px; height: 140px; }
+            .newsletter input { width: 160px; }
+            .chatbot-window { width: 290px; right: 8px; bottom: 80px; }
+            .chat-input-area .input-wrapper { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">
+        <img src="images/logo.PNG" alt="Logo SINETRANS" onerror="this.style.display='none'">
+        <div>
+            <h1>SINETRANS</h1>
+            <span>Commissionnaire agréé en douane</span>
+        </div>
+    </div>
+    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" id="nav-home"><i class="fas fa-home"></i> Accueil</a>
+        <a href="services.html" id="nav-services"><i class="fas fa-concierge-bell"></i> Services</a>
+        <a href="#" class="active" id="nav-about"><i class="fas fa-users"></i> À propos</a>
+        <a href="contact.html" id="nav-contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+</header>
+
+<!-- BANNIÈRE -->
+<div class="page-banner">
+    <img src="imag.jpg" alt="À propos de SINETRANS" onerror="this.style.background='#0f3b2a'; this.style.display='none'">
+    <div class="overlay"></div>
+    <div class="banner-content">
+        <h1>À propos de SINETRANS</h1>
+        <p>Expertise douanière et logistique au service de vos projets</p>
+    </div>
+</div>
+
+<!-- SECTION TEXTE -->
+<div class="about-text-section">
+    <div class="about-text-left">
+        <h2><i class="fas fa-info-circle"></i> Qui sommes-nous ?</h2>
+        <p>
+            <span class="highlight">SINETRANS SA</span> est une entreprise camerounaise spécialisée dans les 
+            services douaniers et logistiques. <span class="highlight">Commissionnaire agréé en douane</span> 
+            et certifié <span class="highlight">ISO 9001:2015</span>, nous mettons notre expertise à votre 
+            service pour faciliter vos opérations d'import-export.
+        </p>
+        <p>
+            Forts de plusieurs années d'expérience, nous accompagnons les entreprises dans leurs 
+            formalités douanières, le dédouanement, le magasinage et le transport. Notre engagement : 
+            <span class="highlight">fiabilité, réactivité et transparence</span>.
+        </p>
+        <p>
+            Nous sommes fiers d'être <span class="highlight">partenaires officiels de MAERSK et SEALAND</span>, 
+            ce qui nous permet d'offrir des solutions logistiques compétitives et adaptées à vos besoins.
+        </p>
+    </div>
+    <div class="about-text-right">
+        <h3><i class="fas fa-bullseye"></i> Nos valeurs</h3>
+        <ul>
+            <li><i class="fas fa-check-circle"></i> <strong>Excellence</strong> – Des services de qualité certifiés ISO 9001</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Intégrité</strong> – Des pratiques transparentes et éthiques</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Réactivité</strong> – Des délais maîtrisés et un suivi personnalisé</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Engagement citoyen</strong> – Une entreprise ancrée dans son territoire</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Expertise</strong> – Une connaissance approfondie des réglementations douanières</li>
+        </ul>
+    </div>
+</div>
+
+<!-- MINI-CAROUSEL -->
+<div class="mini-carousel-section">
+    <div class="mini-carousel-container">
+        <h2><i class="fas fa-images"></i> Nos réalisations en images</h2>
+        <div class="mini-carousel-wrapper">
+            <div class="mini-carousel-slide" id="miniCarouselSlide">
+                <div class="mini-carousel-item">
+                    <img src="ent.jpg" alt="Dédouanement" onerror="this.style.background='#0f3b2a'; this.style.display='none'">
+                    <div class="mini-content">
+                        <h3>Dédouanement express</h3>
+                        <p>Nos équipes gèrent vos formalités douanières avec efficacité, réduisant les délais d'attente et optimisant vos chaînes d'approvisionnement.</p>
+                    </div>
+                </div>
+                <div class="mini-carousel-item">
+                    <img src="istockphoto-1050702772-612x612.jpg" alt="Import-Export" onerror="this.style.background='#0f3b2a'; this.style.display='none'">
+                    <div class="mini-content">
+                        <h3>Import-Export international</h3>
+                        <p>Des solutions complètes pour vos opérations internationales : transport, magasinage, dégroupage et suivi en temps réel.</p>
+                    </div>
+                </div>
+                <div class="mini-carousel-item">
+                    <img src="istockphoto-1344130086-612x612.jpg" alt="Partenariat MAERSK" onerror="this.style.background='#0f3b2a'; this.style.display='none'">
+                    <div class="mini-content">
+                        <h3>Partenariat MAERSK · SEALAND</h3>
+                        <p>Nous bénéficions de tarifs préférentiels et d'une expertise reconnue grâce à nos partenariats avec les leaders du transport maritime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mini-carousel-controls">
+            <button class="mini-carousel-btn" id="miniPrevBtn"><i class="fas fa-chevron-left"></i></button>
+            <div class="mini-dots" id="miniDots">
+                <span class="mini-dot active" data-index="0"></span>
+                <span class="mini-dot" data-index="1"></span>
+                <span class="mini-dot" data-index="2"></span>
+            </div>
+            <button class="mini-carousel-btn" id="miniNextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chatbot-toggle" id="chatToggle">
+    <img src="agent.webp" alt="Agent SINETRANS" onerror="this.innerHTML='<i class=\'fas fa-comment-dots\' style=\'font-size:1.8rem; color:#f5f0e0;\'></i>'">
+</button>
+
+<div class="chatbot-window" id="chatWindow">
+    <div class="chat-header">
+        <img src="agent.webp" alt="Agent SINETRANS" onerror="this.style.display='none'">
+        <span>Agent SINETRANS</span>
+        <button class="close-chat" id="closeChat"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg bot">Bonjour ! Je suis votre assistant SINETRANS. Posez-moi une question ou importez un document (facture, connaissement, etc.).</div>
+    </div>
+    <div class="thinking-indicator" id="thinkingIndicator">
+        <span class="dot-thinking"></span>
+        <span class="dot-thinking"></span>
+        <span class="dot-thinking"></span>
+    </div>
+    <div class="chat-input-area">
+        <div class="input-wrapper">
+            <input type="text" id="chatInput" placeholder="Écrivez votre message...">
+            <button class="file-btn" id="fileBtn" title="Importer un document"><i class="fas fa-paperclip"></i></button>
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+            <button class="send-btn" id="sendChat"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-info">
+            <p><strong>SINETRANS SA</strong> · Commissionnaire agréé en douane</p>
+            <p><i class="fas fa-map-pin" style="color:var(--rouge);"></i> Douala, Cameroun</p>
+            <p><i class="fas fa-phone" style="color:var(--rouge);"></i> +237 242 197 270 / 675 376 977</p>
+            <p><i class="fas fa-envelope" style="color:var(--rouge);"></i> malcontact@snetrons.cm</p>
+        </div>
+        <div class="newsletter">
+            <label for="newsletterInput"><i class="fas fa-envelope" style="color:var(--rouge);"></i> Newsletter</label>
+            <input type="email" id="newsletterInput" placeholder="Votre email" required>
+            <button onclick="alert('Merci pour votre inscription à notre newsletter !')">S'inscrire</button>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 SINETRANS SA · <a href="#"><i class="fas fa-certificate"></i> ISO 9001:2015</a> · Tous droits réservés</p>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        // ----- MENU BURGER -----
+        const burger = document.getElementById('burgerMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        burger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                burger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ----- MINI-CAROUSEL -----
+        const miniSlide = document.getElementById('miniCarouselSlide');
+        const miniDots = document.querySelectorAll('.mini-dot');
+        const miniPrevBtn = document.getElementById('miniPrevBtn');
+        const miniNextBtn = document.getElementById('miniNextBtn');
+        let miniIndex = 0;
+        const miniTotal = document.querySelectorAll('.mini-carousel-item').length;
+
+        function updateMiniCarousel(index) {
+            if (index < 0) index = miniTotal - 1;
+            if (index >= miniTotal) index = 0;
+            miniIndex = index;
+            miniSlide.style.transform = 'translateX(-' + (index * 100) + '%)';
+            miniDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }
+
+        miniDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.index);
+                updateMiniCarousel(idx);
+            });
+        });
+
+        miniPrevBtn.addEventListener('click', function() { updateMiniCarousel(miniIndex - 1); });
+        miniNextBtn.addEventListener('click', function() { updateMiniCarousel(miniIndex + 1); });
+
+        // Auto-slide du mini-carousel
+        let miniAuto = setInterval(() => updateMiniCarousel(miniIndex + 1), 5000);
+        const miniContainer = document.querySelector('.mini-carousel-container');
+        miniContainer.addEventListener('mouseenter', () => clearInterval(miniAuto));
+        miniContainer.addEventListener('mouseleave', () => {
+            miniAuto = setInterval(() => updateMiniCarousel(miniIndex + 1), 5000);
+        });
+
+        // ----- CHATBOT -----
+        const chatToggle = document.getElementById('chatToggle');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendChat');
+        const fileBtn = document.getElementById('fileBtn');
+        const fileInput = document.getElementById('fileInput');
+        const thinkingIndicator = document.getElementById('thinkingIndicator');
+
+        function toggleChat(open) {
+            if (open === undefined) {
+                chatWindow.classList.toggle('open');
+            } else if (open) {
+                chatWindow.classList.add('open');
+            } else {
+                chatWindow.classList.remove('open');
+            }
+        }
+
+        chatToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleChat();
+        });
+
+        closeChat.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleChat(false);
+        });
+
+        function addMessage(text, sender, isFile) {
+            var div = document.createElement('div');
+            div.className = 'chat-msg ' + sender;
+            if (isFile) div.classList.add('file-msg');
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showThinking() {
+            thinkingIndicator.classList.add('active');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideThinking() {
+            thinkingIndicator.classList.remove('active');
+        }
+
+        fileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                var file = this.files[0];
+                var fileName = file.name;
+                var fileSize = (file.size / 1024).toFixed(1);
+                addMessage('📎 Document importé : ' + fileName + ' (' + fileSize + ' KB)', 'user', true);
+                showThinking();
+                setTimeout(function() {
+                    hideThinking();
+                    addMessage('✅ J\'ai bien reçu votre document "' + fileName + '". Un conseiller SINETRANS l\'analysera et vous répondra dans les plus brefs délais.', 'bot');
+                }, 1200);
+                this.value = '';
+            }
+        });
+
+        function getBotReply(userMsg) {
+            var lower = userMsg.toLowerCase().trim();
+
+            if (lower.includes('bonjour') || lower.includes('salut') || lower.includes('coucou') || lower.includes('hello')) {
+                return 'Bonjour ! Je suis votre assistant SINETRANS. Comment puis-je vous aider aujourd\'hui ? Vous pouvez aussi importer un document.';
+            }
+            else if (lower.includes('comment') && (lower.includes('aide') || lower.includes('peux'))) {
+                return 'Je suis là pour vous aider ! Vous pouvez me poser des questions sur nos services, l\'import-export, les délais de transit, nos coordonnées, les tarifs, nos partenaires ou la certification ISO.';
+            }
+            else if (lower.includes('merci') || lower.includes('thanks')) {
+                return 'Je vous en prie ! N\'hésitez pas si vous avez d\'autres questions. 😊';
+            }
+            else if (lower.includes('douane') || lower.includes('formalité') || lower.includes('dédouanement')) {
+                return 'Nous sommes commissionnaires agréés en douane. Nous gérons toutes les formalités douanières, le dédouanement, la conformité et les régimes particuliers.';
+            }
+            else if (lower.includes('import') || lower.includes('export') || lower.includes('importation') || lower.includes('exportation')) {
+                return 'SINETRANS accompagne vos opérations import-export avec des solutions logistiques complètes : transport, dédouanement, magasinage et dégroupage.';
+            }
+            else if (lower.includes('transit') || lower.includes('délai') || lower.includes('temps') || lower.includes('urgent')) {
+                return 'Nos services Transit-time garantissent des délais maîtrisés et un suivi en temps réel. Nous proposons également des solutions express.';
+            }
+            else if (lower.includes('contact') || lower.includes('téléphone') || lower.includes('adresse') || lower.includes('email') || lower.includes('mail')) {
+                return 'Vous pouvez nous joindre au +237 242 197 270 ou au 675 376 977. Par email : malcontact@snetrons.cm. Notre bureau se trouve à Douala, rue King Hwa.';
+            }
+            else if (lower.includes('prix') || lower.includes('tarif') || lower.includes('coût') || lower.includes('devis')) {
+                return 'Nos tarifs varient selon le service et le volume. Contactez-nous pour un devis personnalisé.';
+            }
+            else if (lower.includes('maersk') || lower.includes('sealand') || lower.includes('partenaire')) {
+                return 'SINETRANS est partenaire officiel de MAERSK et SEALAND, bénéficiant de tarifs préférentiels et d\'une expertise reconnue.';
+            }
+            else if (lower.includes('iso') || lower.includes('certifié') || lower.includes('qualité')) {
+                return 'SINETRANS est certifié ISO 9001:2015, garantissant des processus de qualité et une amélioration continue.';
+            }
+            else {
+                return 'Merci pour votre message. Un conseiller SINETRANS vous répondra sous 24h. Besoin d\'aide sur un service spécifique ? (Douane, Import-Export, Transit, Magasinage, Devis)';
+            }
+        }
+
+        function handleSend() {
+            var text = chatInput.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            chatInput.value = '';
+            showThinking();
+            setTimeout(function() {
+                var reply = getBotReply(text);
+                hideThinking();
+                addMessage(reply, 'bot');
+            }, 1200);
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        // Rendre le lien À propos actif
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-links a').forEach(function(l) {
+                    l.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
